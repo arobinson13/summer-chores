@@ -10,5 +10,7 @@ Callback functions
 ## Installation
 
 Clone the Github repository
+
 Navigate to the project directory and open it
+
 Run using node callbackVersion.js in the terminal
