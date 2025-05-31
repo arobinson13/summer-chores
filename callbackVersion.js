@@ -1,45 +1,74 @@
-function mowYard(callback, name) {
+function mowYard(name, callback) {
     setTimeout(function () {
-        console.log("PERSON'S NAME mowed the yard.")
-        callback(weedEat, name);
+        console.log(`${name} mowed the yard.`)
+        callback();
     }, 2000);
 }
 
-function weedEat(callback, name) {
+function weedEat(name, callback) {
     setTimeout(function () {
-        console.log("PERSON'S NAME finished using the weed eater.")
-        callback(trimHedges, name);
+        if (Math.random() > .2) {
+            console.log(`${name} finished using the weed eater.`)
+        callback();
+        }
+        else {
+            console.log(`${name} fell asleep after mowing the yard.`)
+        }
     }, 1500);
-    console.log("PERSON'S NAME fell asleep after mowing the yard.")
 }
 
-function trimHedges(callback, name) {
+function trimHedges(name, callback) {
     setTimeout(function () {
-        console.log("PERSON'S NAME finished trimming the hedges.")
-        callback(collectWood, name);
+        if (Math.random() > .4) {
+            console.log(`${name} finished trimming the hedges.`)
+        callback();
+        }
+        else {
+            console.log(`${name} fell asleep after weed eating the yard.`)
+        }
     }, 1000);
-    console.log("PERSON'S NAME fell asleep after weed eating the yard.")
 }
 
-function collectWood(callback, name) {
+function collectWood(name, callback) {
     setTimeout(function () {
-        console.log("PERSON'S NAME finished collecting wood.")
-        callback(waterGarden, name);
+        if (Math.random() > .6) {
+            console.log(`${name} finished collecting wood.`)
+        callback();
+        }
+        else {
+            console.log(`${name} fell asleep after trimming the hedges.`)
+        }
     }, 2500);
-    console.log("PERSON'S NAME fell asleep after trimming the hedges.")
 }
 
-function waterGarden(callback, name) {
+function waterGarden(name, callback) {
     setTimeout(function () {
-        console.log("PERSON'S NAME finished watering the garden.")
-        callback(doSummerChores, name);
+        if (Math.random() > .8) {
+            console.log(`${name} finished watering the garden.`)
+        callback();
+        }
+        else {
+            console.log(`${name} fell asleep after collecting wood.`)
+        }
     }, 500);
-    console.log("PERSON'S NAME fell asleep after collecting wood.")
+}
+
+function finishedChores(name) {
+    console.log(`${name} finished their chores!`)
 }
 
 function doSummerChores(name) {
-    mowYard();
-    console.log("PERSON'S NAME finsihed all their chores!")
+    mowYard(name, () => {
+        weedEat(name, () => {
+            trimHedges(name, () => {
+                collectWood(name, () => {
+                    waterGarden(name, () => {
+                        finishedChores(name);
+                    });
+                });
+            });
+        });
+    });
 }
 
-mowYard(weedEat, 'Bob');
+doSummerChores('Alesha');
