@@ -7,6 +7,8 @@ their list of summer chores.
 
 Callback functions
 
+Promise functions
+
 ## Installation
 
 Clone the Github repository
