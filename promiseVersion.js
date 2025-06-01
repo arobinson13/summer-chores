@@ -67,14 +67,12 @@ function waterGarden(name) {
 
 function doSummerChores(name) {
 
-    return new Promise((resolve, reject) => {
-        resolve(`${name} finished their chores!`)
-    })
-}
-
-mowYard('Alesha').then(value => { console.log(value); return weedEat('Alesha') })
+    mowYard('Alesha').then(value => { console.log(value); return weedEat('Alesha') })
     .then(value => { console.log(value); return trimHedges('Alesha') })
     .then(value => { console.log(value); return collectWood('Alesha') })
     .then(value => { console.log(value); return waterGarden('Alesha') })
-    .then(value => { console.log(value); return doSummerChores('Alesha') })
+    .then(value => { console.log(value); console.log(`${name} finished their chores!`) })
     .catch(error => console.error(error));
+}
+
+doSummerChores('Alesha')
